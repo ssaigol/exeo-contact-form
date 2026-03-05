@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary1: #6d6f70;
+  --color-primary2: #e13128;
+  --color-primary3: #000000;
+  --color-accent1: #26263b;
+  --color-accent2: #cb605b;
+  --color-accent3: #303061;
+  --color-accent4: #729897;
+  --color-accent5: #b2afaf;
+  --color-accent6: #f3f3f3;
+}
+
+@theme {
+  --breakpoint-sm: 768px;
+  --breakpoint-md: 992px;
+  --breakpoint-lg: 1200px;
+}
+
+:root {
+  font-family: "Poppins", "Roboto", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Mobile-first: smallest max-width as default */
+#root {
+  max-width: 476px;
+  margin: 0 auto;
+  width: 100%;
+  background-color: white;
+}
+
+.react-international-phone-country-selector-dropdown {
+  top: 10px !important;
+  transform: translateX(-15%);
+  max-height: 175px !important;
+  padding-top: 7px !important;
+  padding-left: 10px !important;
+  border-radius: 6px !important;
+}
+
+.react-international-phone-country-selector-dropdown__list-item {
+  padding: 5px !important;
+}
+
+/* 768px and up */
+@media (min-width: 768px) {
+  #root {
+    max-width: 621.195px;
+  }
+  .react-international-phone-country-selector-dropdown {
+    transform: translateX(-45%);
+    max-height: 180px !important;
+  }
+}
+
+/* 992px and up */
+@media (min-width: 992px) {
+  #root {
+    max-width: 678px;
+  }
+  .react-international-phone-country-selector-dropdown {
+    transform: translateX(-40%);
+  }
+}
+
+/* 1200px and up */
+@media (min-width: 1200px) {
+  #root {
+    max-width: 798px;
+  }
+  .react-international-phone-country-selector-dropdown {
+    transform: translateX(-25%);
+  }
+}
