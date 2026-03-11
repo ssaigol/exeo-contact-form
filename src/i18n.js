@@ -177,9 +177,11 @@ i18n.use(initReactI18next).init({
 
         // Citizenship by descent questions
         cit_q1: "Where were you born?",
-        cit_q2: "Do you have a Canadian parent or Canadian grandparent?",
+        cit_q2:
+          "Do you have a Canadian parent, Canadian grandparent, or an older Canadian ancestor?",
         cit_q2_parent: "Canadian parent",
         cit_q2_grandparent: "Canadian grandparent",
+        cit_q2_ancestor: "Older Canadian ancestor",
         cit_q3:
           "Do you have proof of their birth in Canada (birth certificate, parish record, etc.)?",
         cit_q3_yes: "Yes",
@@ -246,9 +248,11 @@ i18n.use(initReactI18next).init({
 
         // Citizenship by descent questions
         cit_q1: "Où êtes-vous né(e) ?",
-        cit_q2: "Avez-vous un parent canadien ou un grand-parent canadien ?",
+        cit_q2:
+          "Avez-vous un parent canadien, un grand-parent canadien ou un ancêtre canadien plus âgé ?",
         cit_q2_parent: "Parent canadien",
         cit_q2_grandparent: "Grand-parent canadien",
+        cit_q2_ancestor: "Ancêtre canadien plus âgé",
         cit_q3:
           "Avez-vous une preuve de leur naissance au Canada (certificat de naissance, registre paroissial, etc.) ?",
         cit_q3_yes: "Oui",

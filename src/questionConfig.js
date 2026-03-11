@@ -105,7 +105,7 @@ export const questionSets = {
       options: [
         { label: t("cit_q2_parent"), value: "Canadian parent" },
         { label: t("cit_q2_grandparent"), value: "Canadian grandparent" },
-        { label: t("other"), value: "Other" },
+        { label: t("cit_q2_ancestor"), value: "Canadian ancestor" },
       ],
     },
     {
