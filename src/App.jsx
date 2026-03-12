@@ -18,6 +18,7 @@ import {
 
 const pageParams = new URLSearchParams(window.location.search);
 const PAGE_PARAM = pageParams.get("page") || "";
+const LANG_PARAM = pageParams.get("lang") || "en";
 
 function App() {
   const { t, i18n } = useTranslation();
@@ -207,7 +208,12 @@ function App() {
     try {
       const csrf = import.meta.env.PROD ? await getCsrf() : {};
       const contactFields = buildContactPayload();
-      payload = { page: PAGE_PARAM, ...contactFields, ...csrf };
+      payload = {
+        page: PAGE_PARAM,
+        lang: LANG_PARAM,
+        ...contactFields,
+        ...csrf,
+      };
 
       let responseData = {};
 
