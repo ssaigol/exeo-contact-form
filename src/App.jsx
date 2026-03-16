@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { Loader, CircleCheckBig } from "lucide-react";
 import * as Sentry from "@sentry/react";
 import ContactForm from "./ContactForm";
-import { ChevronRight, CornerDownLeft } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import Questionnaire from "./Questionnaire";
 import Review from "./Review";
 import {
@@ -43,11 +43,12 @@ function App() {
   });
 
   const [submitting, setSubmitting] = useState(false);
-  const [success, setSuccess] = useState(false);
+  const [success2, setSuccess2] = useState(false);
   const [page, setPage] = useState("contact");
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [pageVisible, setPageVisible] = useState(true);
   const [editingFrom, setEditingFrom] = useState(null);
+  const [success1, setSuccess1] = useState(false);
 
   // Pipedrive IDs from first submission
   const [pipedrivePersonId, setPipedrivePersonId] = useState(null);
@@ -81,6 +82,13 @@ function App() {
       ...rest,
     ];
   };
+
+  //Auto dismiss success1 overlay
+  useEffect(() => {
+    if (!success1) return;
+    const timer = setTimeout(() => setSuccess1(false), 2500);
+    return () => clearTimeout(timer);
+  }, [success1]);
 
   // activeQuestions: the resolved questions array for the current set, or empty
   const activeQuestions = useMemo(() => {
@@ -189,8 +197,8 @@ function App() {
     setPipedriveDealId(null);
     contactSnapshotRef.current = null;
     setSubmitting(false);
-    setSuccess(true);
-    setTimeout(() => setSuccess(false), 4000);
+    setSuccess2(true);
+    setTimeout(() => setSuccess2(false), 4000);
     setPage("contact");
   }
 
@@ -251,6 +259,7 @@ function App() {
       contactSnapshotRef.current = contactFields;
       window.parent.postMessage({ event: "contactForm.submission1" }, "*");
 
+      setSuccess1(true);
       transitionTo(() => {
         setCurrentQuestion(0);
         setPage("questionnaire");
@@ -339,12 +348,26 @@ function App() {
 
   return (
     <div className="relative w-full h-full px-7 pb-8 pt-15 flex flex-col bg-white gap-10 border border-gray-200 rounded-md rounded-t-lg z-10 shadow-md">
-      {success && (
+      {/* Overlays */}
+      {success1 && (
+        <div
+          className={`absolute inset-0 h-full w-full z-20 bg-white/90 flex flex-col items-center justify-center gap-5 transition-opacity duration-700 ease-in-out ${
+            success1 ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <CircleCheckBig className="text-green-600/70 w-15 h-15" />
+          <p className="text-gray-600 px-6 py-5 text-center bg-white">
+            {t("questionnaireIntro")}
+          </p>
+        </div>
+      )}
+      {success2 && (
         <div className="absolute inset-0 h-full w-full z-20 bg-white/95 flex flex-col items-center justify-center gap-5">
           <CircleCheckBig className="text-green-600/70 w-15 h-15" />
           <p className="text-xl font-medium">{t("success")}</p>
         </div>
       )}
+
       <div className="absolute top-0 left-0 h-4.5 w-full bg-primary2 z-30 grid grid-cols-3 rounded-t-lg" />
       <form
         id="contact-form"
@@ -365,6 +388,7 @@ function App() {
             setCurrentQuestion={setCurrentQuestion}
             skipIntro={editingFrom === "review"}
             questions={activeQuestions}
+            pageParam={PAGE_PARAM}
           />
         )}
         {page === "review" && (
@@ -385,7 +409,7 @@ function App() {
 
       {/* Buttons */}
       <div className="relative flex items-center justify-between gap-3 px-5">
-        <button
+        {/* <button
           type="button"
           className={`${page === "questionnaire" && !currentQuestion && !canSubmit ? "visible" : "invisible pointer-events-none"} -mt-8 cursor-pointer font-light flex items-center gap-1 text-md hover:text-gray-400 text-gray-500`}
           onClick={() => {
@@ -399,7 +423,8 @@ function App() {
         >
           <CornerDownLeft className="h-5 w-5" />
           {t("back")}
-        </button>
+        </button> */}
+        <button></button>
 
         {/* Contact page: Submit (only during initial flow, or if no questionnaire) */}
         {page === "contact" && !editingFrom && (

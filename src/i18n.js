@@ -56,7 +56,7 @@ i18n.use(initReactI18next).init({
         edit: "Edit",
         continue: "Continue",
         questionnaireIntro:
-          "Thank you for your submission! Please answer the following questions so we can better prepare for your consultation.",
+          "Thank you! Please complete the following questions to help us prepare for your consultation.",
 
         // Citizenship by descent questions
         cit_q1: "Where were you born?",
@@ -127,7 +127,7 @@ i18n.use(initReactI18next).init({
         edit: "Modifier",
         continue: "Continuer",
         questionnaireIntro:
-          "Merci pour votre soumission ! Veuillez répondre aux questions suivantes afin que nous puissions mieux préparer votre consultation.",
+          "Merci ! Veuillez compléter les questions suivantes afin de nous aider à préparer votre consultation.",
 
         // Citizenship by descent questions
         cit_q1: "Où êtes-vous né(e) ?",
