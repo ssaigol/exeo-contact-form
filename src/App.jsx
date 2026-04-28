@@ -90,6 +90,7 @@ function App() {
       i18n,
       getCountryOptions,
       PREFERRED_COUNTRIES,
+      PAGE_PARAM,
     );
   }, [questionSetName, t, i18n]);
 
@@ -114,7 +115,7 @@ function App() {
 
   // Payload labels for the active question set
   const payloadLabels = questionSetName
-    ? questionnairePayloadLabels[questionSetName]
+    ? questionnairePayloadLabels[questionSetName](PAGE_PARAM)
     : [];
 
   useEffect(() => {
